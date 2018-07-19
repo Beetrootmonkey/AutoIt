@@ -13,11 +13,15 @@ Main()
 Func main()
 	; Config laden, bzw generieren und laden
 
-	; Ab und zu (1x alle 2 Sekunden?) testen, ob BTD5 das aktive Fenster ist
-	; Wenn BTD5 das aktive Fenster ist, ab und an testen, ob man in einer Runde ist (anhand welchen Kriteriums??)
-	; Solange man in einer Runde ist, soll relativ oft (mehrmals pro Sekunde) die rechts-untere Ecke gecheckt werden.
-	; Dafür soll die PixelCheckSum gebildet werden, und mit dem aus der Config geladenen Wert verglichen werden.
-	; Dieser gespeicherte Wert kann manuell mit einer Taste neu gesetzt = "fotografiert" werden
+	;loop
+		; If (BTD5 ist das aktive Fenster) Then
+			; Nur alle paar Male ausführen, weil aufwendig
+			; PixelCheckSum der rechts-unteren Ecke bilden
+			; If (PCS = der aus der Config) Then
+				; Leertaste drücken
+			; EndIf
+			; Dieser gespeicherte Wert kann manuell mit einer Taste neu gesetzt = "fotografiert" werden
+		;EndIf
 
 EndFunc
 
