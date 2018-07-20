@@ -25,8 +25,11 @@ Func main()
 	While(True)
 		If WinWaitActive($window) Then
 			If checkKey($cfg_ChecksumKey) Then
-				$cfg_Checksum[1] = calcChecksum()
-				writeToConfig($cfg_Checksum)
+				Local $checksum = calcChecksum()
+				If $checksum <> Null Then
+					$cfg_Checksum[1] =
+					writeToConfig($cfg_Checksum)
+				EndIf
 			EndIf
 			If checkKey($cfg_ReloadConfigKey) Then
 				reloadConfig()
@@ -35,9 +38,12 @@ Func main()
 			$checksumCounter += 1
 			$checksumCounter = Mod($checksumCounter, 2)
 			If $checksumCounter = 0 Then
-				Local $check = ($cfg_Checksum[1] = calcChecksum())
-				If $check Then
-					Send("{SPACE}")
+				Local $checksum = calcChecksum()
+				If $checksum <> Null Then
+					Local $check = ($cfg_Checksum[1] = $checksum)
+					If $check Then
+						Send("{SPACE}")
+					EndIf
 				EndIf
 			EndIf
 
@@ -48,6 +54,9 @@ EndFunc
 
 Func getLocalCheckRect()
 	Local $size = WinGetPos($window)
+	If $size = Null Then
+		Return Null
+	EndIf
 	Local $w = $size[2]
 	Local $h = $size[3]
 	Local $x1 = $w * $cfg_CheckX[1]
@@ -60,6 +69,9 @@ EndFunc
 
 Func calcChecksum($debug = False)
 	Local $rect = getLocalCheckRect()
+	If $rect = Null Then
+		Return Null
+	EndIf
 	Local $check = PixelChecksum($rect[0], $rect[1], $rect[2], $rect[3], 2)
 
 	Return $check
