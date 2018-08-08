@@ -27,7 +27,7 @@ Func main()
 			If checkKey($cfg_ChecksumKey) Then
 				Local $checksum = calcChecksum()
 				If $checksum <> Null Then
-					$cfg_Checksum[1] =
+					$cfg_Checksum[1] = $checksum
 					writeToConfig($cfg_Checksum)
 				EndIf
 			EndIf
