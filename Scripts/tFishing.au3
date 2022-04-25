@@ -1,9 +1,9 @@
 While True
 	WinWaitActive("Terraria")
 	Click()
-	Sleep(2500)
+	Sleep(800)
 	Click()
-	Sleep(2500)
+	Sleep(500)
 WEnd
 
 Func Click()
